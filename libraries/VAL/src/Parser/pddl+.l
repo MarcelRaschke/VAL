@@ -18,7 +18,7 @@ digit [0-9]
 int -?{digit}*
 float -?{digit}+(\.{digit}*)?
 string {char}+(-|{char}|{digit})*
-whitespace [ \t]+
+whitespace [ \xff\t]+
 nl \n
 comment ;.*$
 at_time "at"{whitespace}{float}
@@ -70,9 +70,9 @@ at_time "at"{whitespace}{float}
 ":condition" {return CONDITION;}
 ":start-precondition" {return START_PRE;}
 ":end-precondition" {return END_PRE;}
-"at start" {return AT_START;}
-"at end" {return AT_END;}
-"over all" {return OVER_ALL;}
+"at start"/[ \xff\t\n(] {return AT_START;}
+"at end"/[ \xff\t\n(] {return AT_END;}
+"over all"/[ \xff\t\n(] {return OVER_ALL;}
 ":effect" {return EFFECTS;}
 ":initial-effect" {return INITIAL_EFFECT;}
 ":final-effect" {return FINAL_EFFECT;}

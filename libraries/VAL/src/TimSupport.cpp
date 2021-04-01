@@ -1355,3 +1355,12 @@ namespace TIM {
   };
 
 };  // namespace TIM
+
+namespace std
+{
+  template<class TI>
+  struct iterator_traits<TIM::getConditionally<TI> >
+  {
+    typedef typename TI::value_type value_type;
+  };
+}
